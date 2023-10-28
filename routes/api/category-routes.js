@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
+const seedCategories = require('../../seeds/category-seeds')
+const seedProducts = require('../../seeds/product-seeds');
+
 
 // The `/api/categories` endpoint
 
@@ -64,6 +67,17 @@ router.delete('/:id', async (req, res) => {
       return;
     }
     res.status(200).json({ message: 'Success! Category Deleted' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/seeds', async (req, res) => {
+  try {
+    // Seed categories and products
+    await seedCategories(); // Seed categories
+    await seedProducts();   // Seed products
+    res.status(201).json({ message: 'Success! Seeding Has Been Completed' });
   } catch (error) {
     res.status(500).json(error);
   }
