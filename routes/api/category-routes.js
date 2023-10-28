@@ -44,10 +44,10 @@ router.put('/:id', async (req, res) => {
       where: { id: req.params.id },
     });
     if (!updatedCategory[0]) {
-      res.status(404).json({ message: 'No category returned, please try again' });
+      res.status(404).json({ message: 'Error: No Category Returned' });
       return;
     }
-    res.status(200).json({ message: 'Success. Category has been updated' });
+    res.status(200).json({ message: 'Success! Category Has Been Updated' });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -63,7 +63,7 @@ router.delete('/:id', async (req, res) => {
         res.status(404).json({ message: 'Error: Not Deleted' });
         return;
       }
-      res.status(200).json({ message: 'Success! Cateogry Deleted' });
+      res.status(200).json({ message: 'Success! Category Deleted' });
     } catch (err) {
       res.status(500).json(err);
     }
